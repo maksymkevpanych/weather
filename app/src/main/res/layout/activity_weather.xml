@@ -1,0 +1,106 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WeatherActivity">
+
+    <!-- Search Field -->
+    <EditText
+        android:id="@+id/searchField"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter location"
+        android:inputType="text"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:imeOptions="actionSearch"/>
+
+    <!-- Today Forecast Section -->
+    <TextView
+        android:id="@+id/todayLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Today's Forecast"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchField" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todayForecastRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/todayLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:scrollbars="horizontal"/>
+
+    <!-- 3 Days Forecast Section -->
+    <TextView
+        android:id="@+id/threeDaysLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="3 Days Forecast"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/todayForecastRecyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/threeDaysForecastRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/threeDaysLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:scrollbars="horizontal"/>
+
+    <!-- 7 Days Forecast Section -->
+    <TextView
+        android:id="@+id/sevenDaysLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="7 Days Forecast"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/threeDaysForecastRecyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sevenDaysForecastRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sevenDaysLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
