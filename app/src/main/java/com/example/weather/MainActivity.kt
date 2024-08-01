@@ -1,4 +1,5 @@
 package com.example.weather
+
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -26,15 +27,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkLocationPermissionsAndStartApp() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
+        val fineLocationGranted = ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+        val coarseLocationGranted = ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        if (!fineLocationGranted || !coarseLocationGranted) {
             requestPermissionsLauncher.launch(arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION
@@ -67,24 +69,43 @@ class MainActivity : AppCompatActivity() {
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            ) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            // Permissions not granted
+            requestPermissionsLauncher.launch(arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ))
             return
         }
+
+        // Retrieve the last known location and start the WeatherActivity
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            val latitude: Double
+            val longitude: Double
+
+            if (location != null) {
+                // Use the user's location
+                latitude = location.latitude
+                longitude = location.longitude
+            } else {
+                // Default location (Uzhhorod)
+                latitude = 48.6200
+                longitude = 22.2870
+                Snackbar.make(
+                    findViewById(android.R.id.content),
+                    "Unable to retrieve location. Showing weather for Uzhhorod.",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+
+            // Start WeatherActivity with location data
             val intent = Intent(this, WeatherActivity::class.java).apply {
-                putExtra("latitude", location.latitude)
-                putExtra("longitude", location.longitude)
+                putExtra("latitude", latitude)
+                putExtra("longitude", longitude)
             }
             startActivity(intent)
             finish()

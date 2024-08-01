@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".WeatherActivity">
 
-    <!-- Background ImageView -->
     <ImageView
         android:id="@+id/backgroundImageView"
         android:layout_width="match_parent"
@@ -19,7 +18,6 @@
         android:src="@drawable/default_background"
         android:alpha="0.5"/>
 
-    <!-- Semi-transparent overlay view -->
     <View
         android:id="@+id/overlayView"
         android:layout_width="match_parent"
@@ -31,7 +29,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Search Field -->
     <EditText
         android:id="@+id/searchField"
         android:layout_width="0dp"
@@ -45,14 +42,13 @@
         app:layout_constraintHorizontal_bias="0.5"
         android:imeOptions="actionSearch"/>
 
-    <!-- Today Forecast Section -->
     <TextView
         android:id="@+id/todayLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="Today's Forecast"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,16 +66,16 @@
         android:clipToPadding="false"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:scrollbars="horizontal"/>
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/threeDaysLabel"/>
 
-    <!-- 3 Days Forecast Section -->
     <TextView
         android:id="@+id/threeDaysLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="3 Days Forecast"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,16 +93,16 @@
         android:clipToPadding="false"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:scrollbars="horizontal"/>
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/sevenDaysLabel"/>
 
-    <!-- 7 Days Forecast Section -->
     <TextView
         android:id="@+id/sevenDaysLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="7 Days Forecast"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,5 +122,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sevenDaysLabel" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

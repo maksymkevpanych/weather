@@ -54,7 +54,7 @@ class WeatherActivity : AppCompatActivity() {
             Toast.makeText(this, "Unable to get location data", Toast.LENGTH_SHORT).show()
         }
 
-        searchField.setOnEditorActionListener { v, actionId, event ->
+        searchField.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 Log.d("WeatherActivity", "Search action triggered")
                 loadWeatherData(searchField.text.toString())
