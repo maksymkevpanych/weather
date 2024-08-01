@@ -23,7 +23,6 @@ class WeatherNetworkingManager(private val context: Context) {
 
         client.newCall(request).enqueue(object : okhttp3.Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {
-                // Run on the main thread to show Toast
                 (context as? androidx.appcompat.app.AppCompatActivity)?.runOnUiThread {
                     Toast.makeText(context, "Error fetching weather data: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
@@ -39,14 +38,14 @@ class WeatherNetworkingManager(private val context: Context) {
                             onSuccess(jsonResponse)
                         }
                     } catch (e: Exception) {
-                        // Run on the main thread to show Toast
+
                         (context as? androidx.appcompat.app.AppCompatActivity)?.runOnUiThread {
                             Toast.makeText(context, "Error processing weather data: ${e.message}", Toast.LENGTH_SHORT).show()
                         }
                         onError(IOException("Error parsing response body", e))
                     }
                 } else {
-                    // Run on the main thread to show Toast
+
                     (context as? androidx.appcompat.app.AppCompatActivity)?.runOnUiThread {
                         Toast.makeText(context, "Unexpected response code: ${response.code}", Toast.LENGTH_SHORT).show()
                     }

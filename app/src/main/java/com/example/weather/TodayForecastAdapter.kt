@@ -35,13 +35,13 @@ class TodayForecastAdapter(private val hourlyWeatherList: List<HourlyWeather>) :
         private val conditionImageView: ImageView = itemView.findViewById(R.id.conditionImageView)
 
         fun bind(hourlyWeather: HourlyWeather) {
-            // Parse the time from the weather data
-            val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-            val weatherTime = hourlyWeather.time // Assuming hourlyWeather.time is in "yyyy-MM-dd HH:mm" format
 
-            // Convert time string to Date object
+            val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val weatherTime = hourlyWeather.time
+
+
             val date = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse(weatherTime)
-            // Format date to show only hour and minute
+
             timeTextView.text = timeFormat.format(date ?: Date())
 
             tempTextView.text = "${hourlyWeather.temp_c}°C"

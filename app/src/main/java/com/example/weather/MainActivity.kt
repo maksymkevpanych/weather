@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // Permissions not granted
+
             requestPermissionsLauncher.launch(arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION
@@ -82,17 +82,17 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Retrieve the last known location and start the WeatherActivity
+
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             val latitude: Double
             val longitude: Double
 
             if (location != null) {
-                // Use the user's location
+
                 latitude = location.latitude
                 longitude = location.longitude
             } else {
-                // Default location (Uzhhorod)
+
                 latitude = 48.6200
                 longitude = 22.2870
                 Snackbar.make(
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
 
-            // Start WeatherActivity with location data
+
             val intent = Intent(this, WeatherActivity::class.java).apply {
                 putExtra("latitude", latitude)
                 putExtra("longitude", longitude)

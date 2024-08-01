@@ -44,12 +44,11 @@
 
     <TextView
         android:id="@+id/todayLabel"
+        style="@style/TextViewBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="Today's Forecast"
-        android:textSize="22sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchField" />
@@ -71,12 +70,11 @@
 
     <TextView
         android:id="@+id/threeDaysLabel"
+        style="@style/TextViewBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="3 Days Forecast"
-        android:textSize="22sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/todayForecastRecyclerView" />
@@ -98,12 +96,11 @@
 
     <TextView
         android:id="@+id/sevenDaysLabel"
+        style="@style/TextViewBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="7 Days Forecast"
-        android:textSize="22sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/threeDaysForecastRecyclerView" />

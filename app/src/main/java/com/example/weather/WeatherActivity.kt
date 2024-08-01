@@ -42,15 +42,15 @@ class WeatherActivity : AppCompatActivity() {
 
         weatherNetworkingManager = WeatherNetworkingManager(this)
 
-        // Get location data from intent
+
         val latitude = intent.getDoubleExtra("latitude", Double.NaN)
         val longitude = intent.getDoubleExtra("longitude", Double.NaN)
 
         if (!latitude.isNaN() && !longitude.isNaN()) {
-            // Load weather data for the current location
+
             loadWeatherData("$latitude,$longitude")
         } else {
-            // Handle error or fallback
+
             Toast.makeText(this, "Unable to get location data", Toast.LENGTH_SHORT).show()
         }
 
@@ -59,7 +59,7 @@ class WeatherActivity : AppCompatActivity() {
                 Log.d("WeatherActivity", "Search action triggered")
                 loadWeatherData(searchField.text.toString())
 
-                // Hide the keyboard
+
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(v.windowToken, 0)
 
@@ -117,22 +117,22 @@ class WeatherActivity : AppCompatActivity() {
         sevenDaysForecastRecyclerView.adapter =
             DaysForecastAdapter(weatherResponse.forecast.forecastday)
 
-        // Update background image based on the current weather condition
+
         val currentHourWeather = getCurrentHourWeather(weatherResponse)
         updateBackgroundImage(currentHourWeather.condition.text)
     }
 
-    // Get weather data for the current hour
+
     private fun getCurrentHourWeather(weatherResponse: WeatherResponse): HourlyWeather {
         val currentHour = SimpleDateFormat("HH", Locale.getDefault()).format(Date()).toInt()
 
-        // Find the closest hour in the forecast
+
         return weatherResponse.forecast.forecastday[0].hour.firstOrNull {
             SimpleDateFormat("HH", Locale.getDefault()).format(SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse(it.time)).toInt() == currentHour
-        } ?: weatherResponse.forecast.forecastday[0].hour[0] // Default to first hour if not found
+        } ?: weatherResponse.forecast.forecastday[0].hour[0]
     }
 
-    // Update background image based on weather condition
+
     private fun updateBackgroundImage(condition: String) {
         val imageResource = when {
             condition.contains("sunny", ignoreCase = true) -> R.drawable.sunny_background
