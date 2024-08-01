@@ -36,8 +36,8 @@ class DaysForecastAdapter(private val forecastDayList: List<ForecastDay>) :
 
         fun bind(forecastDay: ForecastDay) {
             dateTextView.text = forecastDay.date
-            maxTempTextView.text = "${forecastDay.day.maxtemp_c}°C"
-            minTempTextView.text = "${forecastDay.day.mintemp_c}°C"
+            maxTempTextView.text = "D:${forecastDay.day.maxtemp_c}°C"
+            minTempTextView.text = "N:${forecastDay.day.mintemp_c}°C"
             Picasso.get().load("https:${forecastDay.day.condition.icon}").into(conditionImageView)
         }
     }

@@ -1,5 +1,3 @@
-package com.example.weather
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.R
 import com.example.weather.networking.HourlyWeather
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class TodayForecastAdapter(private val hourlyWeatherList: List<HourlyWeather>) :
     RecyclerView.Adapter<TodayForecastAdapter.ViewHolder>() {
@@ -34,7 +35,15 @@ class TodayForecastAdapter(private val hourlyWeatherList: List<HourlyWeather>) :
         private val conditionImageView: ImageView = itemView.findViewById(R.id.conditionImageView)
 
         fun bind(hourlyWeather: HourlyWeather) {
-            timeTextView.text = hourlyWeather.time
+            // Parse the time from the weather data
+            val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val weatherTime = hourlyWeather.time // Assuming hourlyWeather.time is in "yyyy-MM-dd HH:mm" format
+
+            // Convert time string to Date object
+            val date = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse(weatherTime)
+            // Format date to show only hour and minute
+            timeTextView.text = timeFormat.format(date ?: Date())
+
             tempTextView.text = "${hourlyWeather.temp_c}°C"
             Picasso.get().load("https:${hourlyWeather.condition.icon}").into(conditionImageView)
         }

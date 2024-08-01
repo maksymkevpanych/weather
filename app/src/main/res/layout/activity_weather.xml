@@ -6,6 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".WeatherActivity">
 
+    <!-- Background ImageView -->
+    <ImageView
+        android:id="@+id/backgroundImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/default_background"
+        android:alpha="0.5"/>
+
+    <!-- Semi-transparent overlay view -->
+    <View
+        android:id="@+id/overlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        android:alpha="0.65"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <!-- Search Field -->
     <EditText
         android:id="@+id/searchField"
@@ -94,7 +119,6 @@
         android:clipToPadding="false"
         android:orientation="horizontal"
         android:overScrollMode="never"
-
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:scrollbars="horizontal"
